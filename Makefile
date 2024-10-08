@@ -11,7 +11,6 @@ node-%:
 	mkdir $@
 	escript ./genrel.escript > $@/$*.rel
 	cd $@ && erlc $*.rel
-	$(MAKE) node-$*/dist-cert.pem
 
 setup-certs: certs/dist-ca.pem certs/dist-cert.pem
 
