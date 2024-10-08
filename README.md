@@ -49,9 +49,9 @@ Now start node c using 26.2.5.3
 % source .../OTP-26.2.5.3/activate
 % make start-c
 ...
-Erlang/OTP 26 [erts-14.2.5] [source] [64-bit] [smp:8:8] [ds:8:8:10] [async-threads:1] [jit]
+Erlang/OTP 26 [erts-14.2.5.3] [source] [64-bit] [smp:8:8] [ds:8:8:10] [async-threads:1] [jit]
 
-Eshell V14.2.5 (press Ctrl+G to abort, type help(). for help)
+Eshell V14.2.5.3 (press Ctrl+G to abort, type help(). for help)
 (c@nephele)1> net:ping(a@nephele).
 =NOTICE REPORT==== 8-Oct-2024::17:31:46.514684 ===
 TLS client: In state hello received SERVER ALERT: Fatal - Insufficient Security
@@ -74,9 +74,9 @@ Now start node d using 27.1, same problem here:
 % source .../OTP-27.1/activate
 % make start-d
 ...
-Erlang/OTP 26 [erts-14.2.5] [source] [64-bit] [smp:8:8] [ds:8:8:10] [async-threads:1] [jit]
+Erlang/OTP 27 [erts-15.1] [source] [64-bit] [smp:8:8] [ds:8:8:10] [async-threads:1] [jit]
 
-Eshell V14.2.5 (press Ctrl+G to abort, type help(). for help)
+Eshell V15.1 (press Ctrl+G to abort, type help(). for help)
 (d@nephele)1> net:ping(a@nephele).
 =NOTICE REPORT==== 8-Oct-2024::17:31:46.514684 ===
 TLS client: In state hello received SERVER ALERT: Fatal - Insufficient Security
