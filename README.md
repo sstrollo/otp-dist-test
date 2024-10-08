@@ -1,3 +1,18 @@
+# Intro
+
+This repository contains everything you need to setup nodes running
+distributed Erlang over TLS (on the same host). It is only intended
+for demonstration purposes, and specifically I set it up to hunt down
+an incompatibility between different OTP versions.
+
+To start a node use `make start-<nodename>`, e.g. `make start-a` which
+will generate the necessary start scripts, certificates, and ssl dist
+configuration, and then start the node.
+
+To try with different versions, make sure you have your path setup to
+have the version of `erl`, `erlc`, and `escript` you want to try with
+_before_ invoking `make start-<nodename>`.
+
 # Erlang distribution over TLS incompatibility
 
 You need an OTP version 26.2.5 and 26.2.5.3 or 27.1
