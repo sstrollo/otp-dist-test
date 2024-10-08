@@ -2,10 +2,11 @@
 
 all:
 
-start-%:
+start-%: certs/dist-cert.pem
 	$(MAKE) node-$*
 	cd node-$* && \
-	  erl -boot ./$* -proto_dist inet_tls -sname $* -ssl_dist_optfile ../ssl_dist.conf
+	  erl -boot ./$* -proto_dist inet_tls -sname $* \
+	      -ssl_dist_optfile ../ssl_dist.conf
 
 node-%:
 	mkdir $@
@@ -14,11 +15,18 @@ node-%:
 
 setup-certs: certs/dist-ca.pem certs/dist-cert.pem
 
+# Works with RSA
+# KEY_GEN = genrsa 4096
+# Works with ED25519
+# KEY_GEN = genpkey -algorithm ED25519
+
+# But *doesn't* work with edcsa!
+KEY_GEN = ecparam -name prime256v1 -genkey -noout
 
 # Distribution certificate key
 certs/dist-cert.key:
 	mkdir -p $(dir $@)
-	openssl genrsa -out $@ 4096
+	openssl $(KEY_GEN) -out $@
 
 certs/dist-cert.csr: certs/dist-cert.key certs/dist-cert.cfg
 	openssl req -new -key $< -out $@ \
@@ -42,8 +50,7 @@ certs/dist-ca.pem: certs/dist-ca.key
 # CA key
 certs/dist-ca.key:
 	mkdir -p $(dir $@)
-	: # openssl genrsa -des3 -out $@ 4096
-	openssl genrsa -out $@ 4096
+	openssl $(KEY_GEN) -out $@
 
 certs/dist-cert.cfg:
 	@echo "" > $@
